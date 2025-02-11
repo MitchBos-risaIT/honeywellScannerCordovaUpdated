@@ -19,7 +19,7 @@ import com.honeywell.aidc.BarcodeReadEvent;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.ScannerUnavailableException;
 import com.honeywell.aidc.ScannerNotClaimedException;
-import com.honeywell.aidc.ScannerUnavailableException;
+import com.honeywell.aidc.UnsupportedPropertyException;
 
 public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeReader.BarcodeListener {
     private static final String TAG = "HoneywellScanner";
