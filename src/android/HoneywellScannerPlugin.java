@@ -19,6 +19,7 @@ import com.honeywell.aidc.BarcodeReadEvent;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.ScannerUnavailableException;
 import com.honeywell.aidc.ScannerNotClaimedException;
+import com.honeywell.aidc.ScannerUnavailableException;
 
 public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeReader.BarcodeListener {
     private static final String TAG = "HoneywellScanner";
@@ -39,11 +40,14 @@ public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeRead
                 barcodeReader = manager.createBarcodeReader();
                 if (barcodeReader != null) {
                     barcodeReader.addBarcodeListener(HoneywellScannerPlugin.this);
-                    try { 
+                    try {
                         barcodeReader.setProperty(BarcodeReader.PROPERTY_DATA_PROCESSOR_LAUNCH_BROWSER, false);
-                        barcodeReader.claim();
                     } catch (UnsupportedPropertyException e) {
                         e.printStackTrace();
+                    }
+
+                    try { 
+                        barcodeReader.claim();
                     } catch (ScannerUnavailableException e) {
                         e.printStackTrace();
                     }
